@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import axios from "axios";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-
+console.log("Backend URL is", import.meta.env.VITE_BACKEND_URL);
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
