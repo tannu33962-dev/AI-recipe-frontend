@@ -17,6 +17,8 @@ const RegisterPage = () => {
     confirmPassword: "",
   });
 
+  const [loading, setLoading] = useState(false); // NEW STATE
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -26,9 +28,11 @@ const RegisterPage = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true); // Disable button
 
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
+      setLoading(false);
       return;
     }
 
@@ -48,6 +52,8 @@ const RegisterPage = () => {
     } catch (err) {
       console.error(err);
       alert(err.response?.data?.message || "Registration failed.");
+    } finally {
+      setLoading(false); // Re-enable button
     }
   };
 
@@ -98,9 +104,12 @@ const RegisterPage = () => {
           />
           <button
             type="submit"
-            className="w-full bg-purple-500 text-white py-2 rounded hover:bg-purple-600 transition"
+            disabled={loading}
+            className={`w-full py-2 rounded transition text-white ${
+              loading ? "bg-gray-400 cursor-not-allowed" : "bg-purple-500 hover:bg-purple-600"
+            }`}
           >
-            Register
+            {loading ? "Registering..." : "Register"}
           </button>
         </form>
       </main>

@@ -59,7 +59,7 @@ function RecipeGPTPage() {
 
   const handleLogout = () => {
     localStorage.removeItem('email');
-    window.location.href = '/login';
+    navigate('/login');
   };
 
   const handleToggleHistory = async () => {
