@@ -5,12 +5,15 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 console.log("Backend URL is", BACKEND_URL);
 
 
+
 function RecipeGPTPage() {
   const [ingredients, setIngredients] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const bottomRef = useRef(null);
+  const navigate = useNavigate();
+
 
   const email = localStorage.getItem('email');
 
