@@ -4,8 +4,8 @@ import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
-
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+console.log("Backend URL is", BACKEND_URL);
 
 const RegisterPage = () => {
   const navigate = useNavigate();
