@@ -4,6 +4,9 @@ import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+
 const RegisterPage = () => {
   const navigate = useNavigate();
 
@@ -30,7 +33,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5555/signup", {
+      const res = await axios.post(`${BACKEND_URL}/signup`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,

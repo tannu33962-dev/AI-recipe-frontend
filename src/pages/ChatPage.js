@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+
 function RecipeGPTPage() {
   const [ingredients, setIngredients] = useState('');
   const [messages, setMessages] = useState([]);
@@ -19,7 +22,7 @@ function RecipeGPTPage() {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:5555/generate-recipe', {
+      const res = await axios.post(`${BACKEND_URL}/generate-recipe`, {
         ingredients
       });
 
@@ -35,7 +38,7 @@ function RecipeGPTPage() {
       setIngredients('');
 
       if (email) {
-        await axios.post('http://localhost:5555/api/save_history', {
+        await axios.post(`${BACKEND_URL}/api/save_history`, {
           email,
           prompt,
           response
@@ -64,7 +67,7 @@ function RecipeGPTPage() {
     if (!showHistory && email) {
       // Switching to history mode, so fetch history
       try {
-        const res = await axios.post('http://localhost:5555/api/get_history', {
+        const res = await axios.post(`${BACKEND_URL}/api/get_history`, {
           email
         });
 
