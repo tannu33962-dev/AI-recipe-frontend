@@ -19,7 +19,9 @@ const LoginPage = () => {
       });
 
       if (res.data.success) {
-        alert("Login successful!");
+        // alert("Login successful!");
+        localStorage.setItem('email', email);
+
         navigate("/chat"); // redirect to /chat on success
       } else {
         alert(res.data.message || "Login failed.");
